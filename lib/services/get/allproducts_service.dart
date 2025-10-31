@@ -6,6 +6,7 @@ class AllProductsService {
   Future<List<ProductModel>> getAllProducts() async {
     List<dynamic> data = await Api().get(
       url: "https://fakestoreapi.com/products",
+      token: null,
     );
     List<ProductModel> products = data
         .map((productJson) => ProductModel.fromJson(productJson))
