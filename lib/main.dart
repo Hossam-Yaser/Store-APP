@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/screens/catregory_screen.dart';
 import 'package:store_app/screens/home_screen.dart';
+import 'package:store_app/screens/productdetails_screen.dart';
 
 void main() {
   runApp(StoreApp());
@@ -20,4 +22,6 @@ class StoreApp extends StatelessWidget {
 
 final Map<String, WidgetBuilder> _routes = {
   HomeScreen.id: (context) => HomeScreen(),
+  CatregoryScreen.id: (context) => CatregoryScreen(),
+  ProductdetailsScreen.id: (context) => ProductdetailsScreen(),
 };
