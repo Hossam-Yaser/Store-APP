@@ -19,8 +19,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final PageController _pageController = PageController();
   int _currentIndex = 0;
   final bool _showLabels = true;
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,14 +41,19 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 10,
         shadowColor: Colors.black,
       ),
-      body: [
-        ShowproductsWidget(),
-        cartProducts.isEmpty ? EmptycartWidget() : CartWidget(),
-        favouriteProducts.isEmpty
-            ? Emptyfavourite()
-            : Favouritebody(), // Placeholder for Favourite
-        Updateproduct(), // Placeholder for Account
-      ][_currentIndex],
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() => _currentIndex = index);
+        },
+        children: [
+          ShowproductsWidget(),
+          cartProducts.isEmpty ? EmptycartWidget() : CartWidget(),
+          favouriteProducts.isEmpty ? Emptyfavourite() : Favouritebody(),
+          Updateproduct(),
+        ],
+      ),
+
       bottomNavigationBar: LiquidGlassBottomBar(
         items: const [
           LiquidGlassBottomBarItem(
@@ -66,8 +78,15 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _currentIndex,
-        onTap: (i) {
-          if (_currentIndex != i) setState(() => _currentIndex = i);
+        onTap: (index) {
+          if (_currentIndex != index) {
+            setState(() => _currentIndex = index);
+            _pageController.animateToPage(
+              index,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+            );
+          }
         },
         showLabels: _showLabels,
         activeColor: kPrimaryColor,

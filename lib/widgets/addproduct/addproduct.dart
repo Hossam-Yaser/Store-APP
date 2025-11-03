@@ -80,20 +80,13 @@ class Updateproduct extends StatelessWidget {
                   );
 
                   // Show success message
+                } catch (e) {
+                  // Handle error and show failure message
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Product added successfully!'),
                       backgroundColor: Colors.green,
                       duration: Duration(seconds: 2),
-                    ),
-                  );
-                } catch (e) {
-                  // Handle error and show failure message
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Failed to add product: $e'),
-                      backgroundColor: Colors.red,
-                      duration: const Duration(seconds: 3),
                     ),
                   );
                 }
