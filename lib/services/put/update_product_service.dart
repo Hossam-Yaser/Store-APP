@@ -1,14 +1,14 @@
 import 'package:store_app/helper/api.dart';
 import 'package:store_app/models/product_model.dart';
 
-class UpdateProduct {
-  Future<ProductModel> addProduct({
-    required String currentId,
+class UpdateProductService {
+  Future<ProductModel> updateProduct({
+    String? currentId,
     required String title,
     required String price,
     required String description,
     required String image,
-    required String category,
+    String? category,
   }) async {
     Map<String, dynamic> data = await Api().put(
       url: "https://fakestoreapi.com/products/$currentId",

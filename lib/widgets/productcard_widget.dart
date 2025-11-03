@@ -4,14 +4,12 @@ class ProductCard extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String price;
-  final VoidCallback? onFavoriteTap;
 
   const ProductCard({
     super.key,
     required this.imageUrl,
     required this.title,
     required this.price,
-    this.onFavoriteTap,
   });
 
   @override
@@ -52,10 +50,7 @@ class ProductCard extends StatelessWidget {
                       ),
               ),
 
-              IconButton(
-                icon: Icon(Icons.favorite_border, color: Colors.black54),
-                onPressed: onFavoriteTap,
-              ),
+              Icon(Icons.favorite_border, color: Colors.black54),
             ],
           ),
 
@@ -74,7 +69,7 @@ class ProductCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              "$price LE",
+              "$price \$",
               style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
             ),
           ),

@@ -6,6 +6,7 @@ class ProductModel {
   final String category;
   final String image;
   final RatingModel? rating;
+  int amount;
 
   // Constructor
   ProductModel({
@@ -16,6 +17,7 @@ class ProductModel {
     required this.category,
     required this.image,
     required this.rating,
+    this.amount = 1,
   });
 
   //Factory constructor to create a ProductModel from JSON
